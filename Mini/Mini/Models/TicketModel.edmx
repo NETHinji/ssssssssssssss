@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Training_19Sep18_PuneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TicketDetails">
+          <Key>
+            <PropertyRef Name="ReqID" />
+          </Key>
+          <Property Name="ReqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReqDate" Type="date" Nullable="false" />
+          <Property Name="FromLocation" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ToLocation" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="empID" Type="int" />
+          <Property Name="mgrID" Type="int" />
+          <Property Name="managerApproval" Type="bit" />
+          <Property Name="travelagentApproval" Type="bit" />
+        </EntityType>
+        <Function Name="TicketAction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PLPTravels">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="action" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="Training_19Sep18_PuneModelStoreContainer">
+          <EntitySet Name="TicketDetails" EntityType="Self.TicketDetails" Schema="PLPTravels" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Training_19Sep18_PuneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TicketDetail">
+          <Key>
+            <PropertyRef Name="ReqID" />
+          </Key>
+          <Property Name="ReqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReqDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FromLocation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ToLocation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="empID" Type="Int32" />
+          <Property Name="mgrID" Type="Int32" />
+          <Property Name="managerApproval" Type="Boolean" />
+          <Property Name="travelagentApproval" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="Training_19Sep18_PuneEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TicketDetails" EntityType="Self.TicketDetail" />
+          <FunctionImport Name="TicketAction">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="action" Mode="In" Type="Boolean" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Training_19Sep18_PuneModelStoreContainer" CdmEntityContainer="Training_19Sep18_PuneEntities1">
+          <EntitySetMapping Name="TicketDetails">
+            <EntityTypeMapping TypeName="Training_19Sep18_PuneModel.TicketDetail">
+              <MappingFragment StoreEntitySet="TicketDetails">
+                <ScalarProperty Name="ReqID" ColumnName="ReqID" />
+                <ScalarProperty Name="ReqDate" ColumnName="ReqDate" />
+                <ScalarProperty Name="FromLocation" ColumnName="FromLocation" />
+                <ScalarProperty Name="ToLocation" ColumnName="ToLocation" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+                <ScalarProperty Name="mgrID" ColumnName="mgrID" />
+                <ScalarProperty Name="managerApproval" ColumnName="managerApproval" />
+                <ScalarProperty Name="travelagentApproval" ColumnName="travelagentApproval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TicketAction" FunctionName="Training_19Sep18_PuneModel.Store.TicketAction" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
